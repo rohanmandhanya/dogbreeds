@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dog Breeds</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        img {
+            display: block;
+            margin-top: 6px;
+            max-width: 100px;
+            height: auto;
+        }
+
+        .pagination {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .pagination a,
+        .pagination span {
+            margin: 0 10px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .disabled {
+            color: gray;
+            cursor: not-allowed;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .no-dogs {
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dog Breeds (Page {{ page }})</h1>
+
+    {% if error %}
+        <p class="error">
+            Something went wrong. Please <a href="?page={{ page }}">try refreshing the page</a>.
+        </p>
+    {% endif %}
+
+    {% if dogs %}
+        <ul>
+        {% for dog in dogs %}
+            <li>
+                <strong>{{ dog.breed }}</strong><br/>
+                {% if dog.image %}
+                    <img src="{{ dog.image }}" alt="{{ dog.breed }}"
+                         onerror="this.onerror=null; this.src='https://via.placeholder.com/100?text=No+Image';" />
+                {% else %}
+                    <img src="https://via.placeholder.com/100?text=No+Image" alt="No image available" />
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% elif not error %}
+        <p class="no-dogs">No dogs found for this page.</p>
+    {% endif %}
+
+    <div class="pagination">
+        {% if has_prev %}
+            <a href="?page={{ page|add:"-1" }}">⬅ Previous</a>
+        {% else %}
+            <span class="disabled">⬅ Previous</span>
+        {% endif %}
+
+        <span>Page {{ page }}</span>
+
+        {% if has_next %}
+            <a href="?page={{ page|add:"1" }}">Next ➡</a>
+        {% else %}
+            <span class="disabled">Next ➡</span>
+        {% endif %}
+    </div>
+</body>
+</html>
