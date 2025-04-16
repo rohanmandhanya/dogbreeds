@@ -21,7 +21,7 @@ Integration of Dog Breeds list to display using Django and external API.
 
 ```
 git clone https://github.com/rohanmandhanya/dogbreeds.git
-cd dog-breeds
+cd dogbreeds
 ```
 
 ### 2. Run the Application Using Docker Compose
