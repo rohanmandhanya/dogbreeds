@@ -20,7 +20,7 @@ Integration of Dog Breeds list to display using Django and external API.
 ### 1. Clone the Repository
 
 ```
-git clone https://github.com/rohanmandhanya/dog-breeds.git
+git clone https://github.com/rohanmandhanya/dogbreeds.git
 cd dog-breeds
 ```
 
